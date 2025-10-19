@@ -20,32 +20,32 @@ public:
 
   bool operator==(Fraction &nextFraction) //-Перегрузка оператора сравнения;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) == mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) == this->mul(nextFraction.numerator_, this->denominator_));
   };
 
   bool operator!=(Fraction &nextFraction) //-Перегрузка оператора неравенства;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) != mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) != this->mul(nextFraction.numerator_, this->denominator_));
   };
 
   bool operator<(Fraction &nextFraction) //-Перегрузка оператора меньше;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) < mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) < this->mul(nextFraction.numerator_, this->denominator_));
   };
 
   bool operator>(Fraction &nextFraction) //-Перегрузка оператора больше;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) > mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) > this->mul(nextFraction.numerator_, this->denominator_));
   };
 
   bool operator<=(Fraction &nextFraction) //-Перегрузка оператора меньше или равно;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) <= mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) <= this->mul(nextFraction.numerator_, this->denominator_));
   };
 
   bool operator>=(Fraction &nextFraction) //-Перегрузка оператора больше или равно;
   {
-    return (mul(this->numerator_, nextFraction.denominator_) >= mul(nextFraction.numerator_, this->denominator_));
+    return (this->mul(this->numerator_, nextFraction.denominator_) >= this->mul(nextFraction.numerator_, this->denominator_));
   };
 };
 
