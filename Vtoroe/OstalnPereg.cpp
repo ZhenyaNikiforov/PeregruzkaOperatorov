@@ -5,31 +5,31 @@ using namespace std;
 class Fraction
 {
 public:
-  Fraction(int a, int b) : numerator(a), denominator(b) {};
-
-  int reductionFraction(int num, int den) //-Наименьший общий делитель;
+  Fraction(int numer, int denom) //- Конструктор экземпляра Fraction;
   {
-    while (den != 0)
+    int num = numer;
+    int den = denom;
+
+    while (den != 0) //- Находим наибольший общий делитель;
     {
       int temp = den;
       den = num % den;
       num = temp;
-    }
-    if (num < 0)
+    };
+
+    if (num < 0) //- Проверяем, что наиб. общ. делитель положительный;
     {
-      return num * -1;
-    }
-    return num;
+      num *= -1;
+    };
+
+    this->numerator = numer / num; //- Загружаем в поля класса сокращённую дробь;
+    this->denominator = denom / num;
   };
 
   Fraction operator+(Fraction &other)
   {
     int unionNumerator = (this->numerator * other.denominator) + (other.numerator * this->denominator);
     int unionDenominator = this->denominator * other.denominator;
-
-    int litDen = this->reductionFraction(unionNumerator, unionDenominator);
-    unionNumerator /= litDen;
-    unionDenominator /= litDen;
 
     return Fraction(unionNumerator, unionDenominator);
   };
@@ -39,10 +39,6 @@ public:
     int unionNumerator = (this->numerator * other.denominator) - (other.numerator * this->denominator);
     int unionDenominator = this->denominator * other.denominator;
 
-    int litDen = this->reductionFraction(unionNumerator, unionDenominator);
-    unionNumerator /= litDen;
-    unionDenominator /= litDen;
-
     return Fraction(unionNumerator, unionDenominator);
   };
 
@@ -51,10 +47,6 @@ public:
     int unionNumerator = this->numerator * other.numerator;
     int unionDenominator = this->denominator * other.denominator;
 
-    int litDen = this->reductionFraction(unionNumerator, unionDenominator);
-    unionNumerator /= litDen;
-    unionDenominator /= litDen;
-
     return Fraction(unionNumerator, unionDenominator);
   };
 
@@ -62,10 +54,6 @@ public:
   {
     int unionNumerator = this->numerator * other.denominator;
     int unionDenominator = this->denominator * other.numerator;
-
-    int litDen = this->reductionFraction(unionNumerator, unionDenominator);
-    unionNumerator /= litDen;
-    unionDenominator /= litDen;
 
     return Fraction(unionNumerator, unionDenominator);
   };
