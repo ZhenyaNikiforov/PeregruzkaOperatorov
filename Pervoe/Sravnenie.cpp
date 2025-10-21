@@ -3,49 +3,24 @@
 class Fraction
 {
 private:
-  int numerator_;
-  int denominator_;
+  int numerator;
+  int denominator;
 
 public:
   Fraction(int numerator, int denominator)
   {
-    this->numerator_ = numerator;
-    this->denominator_ = denominator;
+    this->numerator = numerator;
+    this->denominator = denominator;
   }
-  //- Пошла моя отсебятина...
-  int mul(int a, int b) //-Функция вычисления числителей;
+
+  bool operator==(const Fraction &nextFraction) //-Перегрузка оператора сравнения;
   {
-    return a * b;
+    return (this->numerator * nextFraction.denominator) == (nextFraction.numerator * this->denominator);
   };
 
-  bool operator==(Fraction &nextFraction) //-Перегрузка оператора сравнения;
+  bool operator>(const Fraction &nextFraction) //-Перегрузка оператора больше;
   {
-    return (this->mul(this->numerator_, nextFraction.denominator_) == this->mul(nextFraction.numerator_, this->denominator_));
-  };
-
-  bool operator!=(Fraction &nextFraction) //-Перегрузка оператора неравенства;
-  {
-    return (this->mul(this->numerator_, nextFraction.denominator_) != this->mul(nextFraction.numerator_, this->denominator_));
-  };
-
-  bool operator<(Fraction &nextFraction) //-Перегрузка оператора меньше;
-  {
-    return (this->mul(this->numerator_, nextFraction.denominator_) < this->mul(nextFraction.numerator_, this->denominator_));
-  };
-
-  bool operator>(Fraction &nextFraction) //-Перегрузка оператора больше;
-  {
-    return (this->mul(this->numerator_, nextFraction.denominator_) > this->mul(nextFraction.numerator_, this->denominator_));
-  };
-
-  bool operator<=(Fraction &nextFraction) //-Перегрузка оператора меньше или равно;
-  {
-    return (this->mul(this->numerator_, nextFraction.denominator_) <= this->mul(nextFraction.numerator_, this->denominator_));
-  };
-
-  bool operator>=(Fraction &nextFraction) //-Перегрузка оператора больше или равно;
-  {
-    return (this->mul(this->numerator_, nextFraction.denominator_) >= this->mul(nextFraction.numerator_, this->denominator_));
+    return (this->numerator * nextFraction.denominator) > (nextFraction.numerator * this->denominator);
   };
 };
 
@@ -55,10 +30,10 @@ int main()
   Fraction f2(6, 11);
 
   std::cout << "f1" << ((f1 == f2) ? " == " : " not == ") << "f2" << '\n';
-  std::cout << "f1" << ((f1 != f2) ? " != " : " not != ") << "f2" << '\n';
-  std::cout << "f1" << ((f1 < f2) ? " < " : " not < ") << "f2" << '\n';
+  std::cout << "f1" << ((!(f1 == f2)) ? " != " : " not != ") << "f2" << '\n';
+  std::cout << "f1" << ((!(f1 > f2) && !(f1 == f2)) ? " < " : " not < ") << "f2" << '\n';
   std::cout << "f1" << ((f1 > f2) ? " > " : " not > ") << "f2" << '\n';
-  std::cout << "f1" << ((f1 <= f2) ? " <= " : " not <= ") << "f2" << '\n';
-  std::cout << "f1" << ((f1 >= f2) ? " >= " : " not >= ") << "f2" << '\n';
+  std::cout << "f1" << ((!(f1 > f2) || (f1 == f2)) ? " <= " : " not <= ") << "f2" << '\n';
+  std::cout << "f1" << (((f1 > f2) || (f1 == f2)) ? " >= " : " not >= ") << "f2" << '\n';
   return 0;
 }
